@@ -1,22 +1,18 @@
 $(function() {
     'use strict';
-    $("#params-row").hide();
+   // $("#params-row").hide();
 });
 
 
 function showParamPage(data) {
     'use strict';
-    //console.log(data);
-    $("#params-row").hide(300);
+    $("#params-row").slideDown(500);
     $("#params-row").html(data);
-    //if($("#params-row").is(':hidden')){
-        //console.log("#params-row is hidden")
-        $("#params-row").show(1000,'swing');
-    //}
 }
 
 function getPage(name) {
-    //var data = 
+    'use strict';
+    $("#params-row").slideUp(200);
     $.ajax({
         cache: false,
         type: 'POST',
@@ -25,6 +21,7 @@ function getPage(name) {
         data:"name="+name,
         success: function(data){showParamPage(data);}
     });
+    
 }
 
 function getTimesParamPage() {
