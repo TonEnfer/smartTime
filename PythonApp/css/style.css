@@ -1,0 +1,19 @@
+#footer{
+    background: #050;
+    height: 30px;
+}
+
+.param-but{
+    height: 145px;
+    width: 145px;
+    margin-bottom:5px;
+}
+
+.btn-lg-txt
+{
+    font-size: large;
+}
+.btn-sm-txt
+{
+    font-size: small;
+}

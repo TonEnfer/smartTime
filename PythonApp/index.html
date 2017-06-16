@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Bootstrap Template</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="js/jquery-3.2.1.js"></script>
+    <script src="js/script.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+  <!--Header-->
+  <div class="container-fluid">
+      <div class="page-header" >
+            <h1>Настройка часов. <small>Специльно для РГППУ</small></h1>
+      </div>
+  </div>
+  <!--Content-->
+   <div class="container-fluid">
+       <div class="row" id="content">
+           <div class="col-lg-3 col-md-3 col-sm-4">
+            <div class="panel panel-default watches-list" style = "height:100%;">
+              <div class="panel-heading">
+                <h3 class="panel-title">Доступные часы</h3>
+              </div>
+              <div class="panel-body" id="Available_watches_list">
+                <ul>
+                    <li>4-200 (192.168.224.1)</li>
+                    <li>4-405 (192.168.224.2)</li>
+                    <li>4-406 (192.168.224.15)</li>
+                    <li>4-305 (192.168.224.126)</li>
+                    <li>4-306 (192.168.224.11)</li>
+                </ul>
+              </div>
+            </div>
+           </div>
+            <div class="col-lg-9 col-md-9 col-sm-8">
+                <div class="row">
+                   <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="panel panel-default">
+                       <div class="panel-heading">
+                           <h3 class="panel-title" id = "Params-watch-name">Параметры часов</h3>
+                        </div>
+                        <div class="panel-body" id="content_panel">
+                           <!--<div class="row" id = "param_buts">-->
+                           <div class="btn-group" role="group" aria-label="...">                            
+                            <button class="btn btn-default param-but" type="button" id="times-param" onclick = "getTimesParamPage(this)">
+                                <p class = "btn-lg-txt" id = "time">00:00:00</p>
+                                <p class = "btn-sm-txt" id = "TZ">Часовой пояс</p>
+                            </button>
+                            <button class="btn btn-default param-but" type="button" id="timer-param" onclick="getTimerParamPage()">
+                                <p class = "btn-lg-txt" id = "timer-time">00:00:00</p>
+                                <p class = "btn-sm-txt" id = "timer-enable">Часовой пояс</p>
+                            </button>
+                            <button class="btn btn-default param-but" type="button" id="temp-param" onclick="getTempParamPage()">
+                                <p class = "btn-lg-txt" id = "temp-cur">-99&deg;C</p>
+                                <p class = "btn-sm-txt" id = "min-temp">Min:-99&deg;C</p>
+                                <p class = "btn-sm-txt" id = "max-temp">Max:-99&deg;C</p>
+                            </button>
+                            <button class="btn btn-default param-but" type="button" id="press-param" onclick="getPressParamPage()">
+                                <p class="btn-lg-txt" id="press-cur">733 мм. рт. с.</p>
+                                <p class="btn-sm-txt" id = "press-min">Min: 733 мм. рт. с.</p>
+                                <p class="btn-sm-txt" id = "press-man">Max: 733 мм. рт. с.</p>
+                            </button>
+                            <button class="btn btn-default param-but" type="button" id="hum-param" onclick="getHumParamPage()">
+                                <p class="btn-lg-txt" id="hum-cur">100%</p>
+                                <p class="btn-sm-txt" id = "hum-min">Min: 0%</p>
+                                <p class="btn-sm-txt" id = "hum-man">Max: 100%</p>
+                            </button>
+                            <button class="btn btn-default param-but" type="button" id="settings-param" onclick="getSetParamPage()">
+                                <p class="btn-lg-txt">Настройки</p>
+                            </button>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+                 </div>
+                  <div class="row" id = "params-row">
+
+                </div>
+           </div>
+       </div>
+   </div>
+   <!--Footer-->
+   <div class="container-fluid">
+       <div class="row" id="footer">
+           
+       </div>
+   </div>
+       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.js"></script>
+  </body>
+</html>
