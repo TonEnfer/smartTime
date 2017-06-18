@@ -10,8 +10,13 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+
     <script src="js/jquery-3.2.1.js"></script>
     <script src="js/script.js"></script>
+   	<script src="js/bootstrap.js"></script>
+<!--   	<script src=></script>-->
+    
+	
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -31,7 +36,7 @@
    <div class="container-fluid">
        <div class="row" id="content">
            <div class="col-lg-3 col-md-3 col-sm-4">
-            <div class="panel panel-default watches-list" style = "height:100%;">
+            <div class="panel panel-default watches-list">
               <div class="panel-heading">
                 <h3 class="panel-title">Доступные часы</h3>
               </div>
@@ -45,7 +50,11 @@
                 </ul>
               </div>
             </div>
+            <div id="message">
+            	
+            </div>
            </div>
+
             <div class="col-lg-9 col-md-9 col-sm-8">
                 <div class="row">
                    <div class="col-lg-12 col-md-12 col-sm-12">
@@ -62,7 +71,7 @@
                             </button>
                             <button class="btn btn-default param-but" type="button" id="timer-param" onclick="getTimerParamPage()">
                                 <p class = "btn-lg-txt" id = "timer-time">00:00:00</p>
-                                <p class = "btn-sm-txt" id = "timer-enable">Часовой пояс</p>
+                                <p class = "btn-sm-txt" id = "timer-enable">Выключен</p>
                             </button>
                             <button class="btn btn-default param-but" type="button" id="temp-param" onclick="getTempParamPage()">
                                 <p class = "btn-lg-txt" id = "temp-cur">-99&deg;C</p>
@@ -93,15 +102,15 @@
            </div>
        </div>
    </div>
+   
    <!--Footer-->
-   <div class="container-fluid">
+   <div class="container-fluid navbar-fixed-bottom">
        <div class="row" id="footer">
            
        </div>
    </div>
-       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.js"></script>
+
   </body>
 </html>

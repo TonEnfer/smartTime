@@ -1,5 +1,6 @@
 #footer{
-    background: #050;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
     height: 30px;
 }
 
@@ -16,4 +17,8 @@
 .btn-sm-txt
 {
     font-size: small;
+}
+
+body{
+	width: 100%;
 }

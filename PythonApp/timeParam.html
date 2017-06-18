@@ -1,10 +1,103 @@
-﻿                  <div class="col-lg-12 col-md-12 col-sm-12">
-                    <div class="panel panel-default">
-                      <div class="panel-heading">
-                        <h3 class="panel-title">Настройки времени</h3>
+				    <link rel="stylesheet" href="css/bootstrap-select.css">
+
+				<div class="col-lg-12 col-md-12 col-sm-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">Настройки времени</h3>
                         </div>
                         <div class="panel-body" id="content_panel">
-                             <p>123</p>
-                        </div>
+                        
+                        
+<!--                            	TZ-->
+                             	<form class="form">
+								<div class="form-group col-md-2 ">
+								  <label class="control-label" for="TZ">Часовой пояс:</label>
+								</div>
+								<div class="form-group col-md-8">
+								  <select id="TZ" class="selectpicker show-menu-arrow form-control" data-live-search="true" title="Выберите часовой пояс...">
+									<option>Hot Dog, Fries and a Soda</option>
+									<option>Burger, Shake and a Smile</option>
+									<option>Sugar, Spice and all things nice</option>
+									<option>Baby Back Ribs</option>
+									<option>A really really long option made to illustrate an issue with the live search in an inline form</option>
+								  </select>
+								</div>
+								<div class="form-group col-md-2">
+								<buttom class="btn btn-success" onclick="setTimeZone()">Ок</buttom>
+								</div>
+							  </form>
+							  
+<!--							  NTP-->
+							  
+							  <form class="form">
+								<div class="form-group col-md-2 ">
+								  <label class="control-label" for="ntp">NTP-сервер:</label>
+								</div>
+								<div class="form-group col-md-8">
+								 	<input type="text" class="form-control" id="ntp">
+								</div>
+								<div class="form-group col-md-2">
+								<buttom class="btn btn-success"  onclick="setNTP()">Ок</buttom>
+								</div>
+							  </form>
+							  
+						</div>
                     </div>
-                  </div>
+				</div>
+				
+				<script>
+					$.getScript({async:false,url:"js/bootstrap-select.js"});
+					$('.selectpicker').selectpicker();
+					 function setNTP()
+					{
+						showMessage('danger', "Не нажимай, пидрила",2000);
+					}
+					function setTimeZone()
+					{
+						showMessage('success', "Часовой пояс успешно изменен",2000);
+						
+//						console.log($("#TZ").find("option:selected").text());
+//						$.ajax({
+//							type: 'POST',
+//							dataType:'json',
+//							url:'/cgi-bin/setTZ.py',
+//							data:"TZ="+name+"&id="+id,
+//							success: function(data){
+//							
+//						});
+//							error: function(data){
+//								var mess = `<div class="alert alert-error alert-dismissible" role="alert">
+//	  							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+//									<span aria-hidden="true">&times;</span>
+//								</button>
+//	  							<strong>
+//									Ok!
+//								</strong>
+//									Часовой пояс успешно изменён на `+ data.TZ + '</div>';
+//								$("#message").html(mess);
+//						});
+//							}
+					}
+					function setName()
+					{
+						name = $("#tz option:selected").text(); 
+						console.log(name);
+						//alert(name);
+					}
+                      function selectTz()
+					  {
+						  
+						  alert("name is " + name);
+//						  $.ajax({
+//							cache: false,
+//							type: 'POST',
+//							dataType:'json',
+//							url:'/cgi-bin/getPage.py',
+//							data:"TZ="+name,
+//							success: function(data){
+//								if(data.result=="")
+//							}
+//						  });
+					  }
+				</script>
+				
