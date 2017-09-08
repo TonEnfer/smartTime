@@ -53,10 +53,7 @@
                     </div>
                   </div>
                   	<script>
-						    $("[data-toggle='toggle']").bootstrapToggle('destroy')                 
-    						$("[data-toggle='toggle']").bootstrapToggle();
-    						
-					//$.getScript({async:false,url:"js/bootstrap-toggle.js"});
+					$.getScript({async:false,url:"js/bootstrap-toggle.js"});
 					//$('#timer_sw').bootstrapToggle('off');
 					function toggle(obj)
 					{

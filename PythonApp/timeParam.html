@@ -9,12 +9,12 @@
                         
                         
 <!--                            	TZ-->
-                             	<form class="form">
+                             	<form class="form" onsubmit="setTimeZone();return false">
 								<div class="form-group col-md-2 ">
-								  <label class="control-label" for="TZ">Часовой пояс:</label>
+								  <label class="control-label" for="TZ_list">Часовой пояс:</label>
 								</div>
 								<div class="form-group col-md-8">
-								  <select id="TZ" class="selectpicker show-menu-arrow form-control" data-live-search="true" title="Выберите часовой пояс...">
+								  <select id="TZ_list" class="selectpicker show-menu-arrow form-control" data-live-search="true" title="Выберите часовой пояс...">
 									<option>Hot Dog, Fries and a Soda</option>
 									<option>Burger, Shake and a Smile</option>
 									<option>Sugar, Spice and all things nice</option>
@@ -23,13 +23,13 @@
 								  </select>
 								</div>
 								<div class="form-group col-md-2">
-								<buttom class="btn btn-success" onclick="setTimeZone()">Ок</buttom>
+								<input class="btn btn-success" type="submit" value = "Ok" style="width:100%;">
 								</div>
 							  </form>
 							  
 <!--							  NTP-->
 							  
-							  <form class="form">
+							  <form class="form" onsubmit="setNTP();return false">
 								<div class="form-group col-md-2 ">
 								  <label class="control-label" for="ntp">NTP-сервер:</label>
 								</div>
@@ -37,7 +37,7 @@
 								 	<input type="text" class="form-control" id="ntp">
 								</div>
 								<div class="form-group col-md-2">
-								<buttom class="btn btn-success"  onclick="setNTP()">Ок</buttom>
+								<input class="btn btn-success" type="submit" value = "Ok" style="width:100%;">
 								</div>
 							  </form>
 							  
@@ -48,56 +48,91 @@
 				<script>
 					$.getScript({async:false,url:"js/bootstrap-select.js"});
 					$('.selectpicker').selectpicker();
-					 function setNTP()
+					getTZList(id);
+					getNTP(id);
+					function getTZList(_id) {
+						$.ajax({
+							async: true,
+							type: 'POST',
+							url:'cgi-bin/getTZList.py',
+							data:"id="+_id,
+							dataType:'json',
+							success: function(data){
+								$("#TZ_list").html('');
+//								console.log(data.tz);
+								$.each(data.tz,function(){
+									var val = this + ""
+//									console.log(val);
+									var op = $('<option/>',{text:val});
+									op.appendTo("#TZ_list");
+								});
+								var v = $("p#TZ").text();
+								console.log(v);
+								
+								$('.selectpicker').selectpicker('refresh');
+								$('.selectpicker').selectpicker('render');
+								$("#TZ_list").val(v);
+								$('.selectpicker').selectpicker('refresh');
+								$('.selectpicker').selectpicker('render');
+							}
+						});
+					}
+					function setNTP()
 					{
-						showMessage('danger', "Не нажимай, пидрила",2000);
+						var ntp = $("input#ntp").val();
+						console.log(ntp);
+						$.ajax({
+						async: true,
+						type: 'POST',
+						url:'cgi-bin/setNTP.py',
+						data:"id="+id+"&ntp="+ntp,
+						dataType:'json',
+						success: function(data)
+							{
+								console.log(data.result);
+								showMessage('success', "NTP-сервер успешно изменён", 2000);
+							}
+						});
+						
+					}
+					function getNTP(_id)
+					{
+						$.ajax({
+						async: true,
+						type: 'POST',
+						url:'cgi-bin/getNTP.py',
+						data:"id="+_id,
+						dataType:'json',
+						success: function(data)
+							{
+								console.log(data.ntp);
+								$("input#ntp").attr("value",data.ntp)
+							}
+						});
 					}
 					function setTimeZone()
 					{
-						showMessage('success', "Часовой пояс успешно изменен",2000);
-						
-//						console.log($("#TZ").find("option:selected").text());
-//						$.ajax({
-//							type: 'POST',
-//							dataType:'json',
-//							url:'/cgi-bin/setTZ.py',
-//							data:"TZ="+name+"&id="+id,
-//							success: function(data){
-//							
-//						});
-//							error: function(data){
-//								var mess = `<div class="alert alert-error alert-dismissible" role="alert">
-//	  							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-//									<span aria-hidden="true">&times;</span>
-//								</button>
-//	  							<strong>
-//									Ok!
-//								</strong>
-//									Часовой пояс успешно изменён на `+ data.TZ + '</div>';
-//								$("#message").html(mess);
-//						});
-//							}
+						//
+						var name = $("#TZ_list").find("option:selected").text();
+						console.log();
+						$.ajax({
+							type: 'POST',
+							dataType:'json',
+							url:'/cgi-bin/setTZ.py',
+							data:"tz="+name+"&id="+id,
+							success: function(data){
+								console.log(data.result);
+								if(data.result == name){
+									showMessage('success', "Часовой пояс успешно изменен",2000);
+									getTZ(id);
+									getTime(id);
+								}
+								else {
+									showMessage('danger', "Не удалось изменить часовой пояс",2000)
+								}
+							}
+						});
 					}
-					function setName()
-					{
-						name = $("#tz option:selected").text(); 
-						console.log(name);
-						//alert(name);
-					}
-                      function selectTz()
-					  {
-						  
-						  alert("name is " + name);
-//						  $.ajax({
-//							cache: false,
-//							type: 'POST',
-//							dataType:'json',
-//							url:'/cgi-bin/getPage.py',
-//							data:"TZ="+name,
-//							success: function(data){
-//								if(data.result=="")
-//							}
-//						  });
-					  }
+
 				</script>
 				
